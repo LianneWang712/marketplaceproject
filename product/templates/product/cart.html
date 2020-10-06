@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+    .this-layout {
+        border: 2px solid transparent;
+        border-radius: 20px;
+        font-family: "Georgia";
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        text-align: center;
+        font-size: large;
+        border: 1px solid grey;
+        top: 0;
+        background-color: #ffffff;
+        padding-top: 30px;
+        margin: 0 auto;
+        width: 550px;
+        height: auto;
+        opacity: 0.8;
+        line-height: 30px;
+
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cart | Regrettable Purchases</title>
+</head>
+
+<body>
+{% extends 'product/navbar.html' %}
+{% block content %}
+
+    <div class='center-up'>My Cart</div><br/>
+    <br/>
+    <div class="this-layout">
+    {% for i in incarts %}
+        <p>
+            {{ i.product.name }} {{ i.product.price }} x {{ i.quantity }}
+            <a href="{% url 'delete_from_cart' i.product.id %}">Remove</a>
+        </p>
+    {% endfor %}
+
+    Total price: {{ total_price }}<br/><br/>
+    <a href="{% url 'check_out' %}" class="button">Check Out</a>
+    <a href="{% url 'index' %}" class="button">Back</a><br/><br/>
+{% endblock %}<br/></div>
+</body>
+</html>

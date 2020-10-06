@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+    .signup-layout {
+        border: 2px solid transparent;
+        border-radius: 20px;
+        font-family: "Georgia";
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        text-align: center;
+        font-size: large;
+        border: 1px solid grey;
+        top: 0;
+        background-color: #ffffff;
+        padding-top: 30px;
+        margin: 0 auto;
+        width: 550px;
+        height: 500px;
+        opacity: 0.8;
+        line-height: 30px;
+    }
+
+    .button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 50%;
+        opacity: 0.9;
+    }
+
+    .button:hover {
+        opacity: 1;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up - Regrettable Purchases</title>
+</head>
+
+<body>
+{% extends "product/navbar.html" %}
+{% block content %}
+
+    <div class="signup-layout">
+        <h4>Please fill out the following fields to sign up:</h4>
+        <form action="" method="post">
+            {% csrf_token %}
+            <p>
+                Username: <br/><input type="text" , name="username" , value="{{ form.data.username }}"/>
+                {{ form.username.errors }}
+            </p>
+            <p>
+                Email: <br/><input type="text" , name="email" , value="{{ form.data.email }}"/>
+                {{ form.email.errors }}
+            </p>
+            <p>
+                Password: <br/><input type="password" , name="password"/>
+                {{ form.password.errors }}
+            </p>
+            <p>
+                Confirm Password: <br/><input type="password" , name="password_confirm"/>
+                {{ form.password_confirm.errors }}
+            </p>
+            <p>
+                <input type="submit" value="Sign Up" class="button"/>
+            </p>
+        </form>
+    </div>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regrettable Purchases</title>
+</head>
+<body>
+{% extends "product/navbar.html" %}
+{% block content %}
+    <h3>Available Products</h3>
+    {% for p in products %}
+        <p>
+            {{ p.name }}<br/>
+            {{ p.description }}<br/>
+            {{ p.price }}<br/>
+            <a href="{% url 'add_to_cart' p.id %}">Add to cart</a><br/>
+            <br/>
+        </p>
+    {% endfor %}
+{% endblock %}
+
+</body>
+</html>

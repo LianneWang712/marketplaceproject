@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Products - Regrettable Purchases</title>
+</head>
+<body>
+{% extends "product/navbar.html" %}
+{% block content %}
+    <h3>My Products</h3>
+    <p>
+        <a href="{% url 'add_product' %}">Create a new product</a>
+    </p>
+    {% for p in products %}
+        <p>
+            <img src="{{ p.image.url }}"/><br/>
+            Name: {{ p.name }}<br/>
+            Price: {{ p.price }}<br/>
+            Description: {{ p.description }}<br/>
+            Stock: {{ p.stock }}<br/>
+            Seller: {{ p.seller.username }}<br/>
+            <a href="{% url 'edit_product' p.id %}">Edit</a>
+            <a href="{% url 'delete_product' p.id %}">Delete</a>
+        </p>
+    {% endfor %}
+{% endblock %}
+</body>
+</html>

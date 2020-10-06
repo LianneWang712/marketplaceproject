@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+.this-layout {
+  border: 2px solid transparent;
+  border-radius: 20px;
+  font-family: "Georgia";
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+  font-size: large;
+  border: 1px solid grey;
+  top: 0;
+  background-color: #ffffff;
+  padding-top: 30px;
+  margin: 0 auto;
+  width:550px;
+  height: auto;
+  opacity: 0.8;
+  line-height: 30px;
+
+}
+</style>
+
+
+<head>
+  <meta charset="UTF-8">
+  <title>Order Detail | Regrettable Purchases</title>
+</head>
+<body>
+{% extends 'product/navbar.html' %}
+{% block content %}
+    <div class='center-up'>Order Details</div>
+        <div class="this-layout">
+    Order ID: {{ order.id }} <br/>
+    Date and time: {{ order.datetime }} <br/>
+    Delivery Address:
+    {{ order.address.name }} <br/>
+    {{ order.address.line1 }} <br/>
+    {{ order.address.line2 }} <br/>
+    {{ order.address.city }}, {{ order.address.province }}, {{ order.address.country }} <br/>
+    {{ order.address.postal_code }} <br/>
+    Products:<br/>
+
+    {% for i in inorders %}
+        {{ i.product.name }} -- {{ i.product.price }} x {{ i.quantity }} <br/>
+    {% endfor %}
+    <a class="button" href="{% url 'order_history' %}">Back</a>
+{% endblock %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+    .this-layout {
+        border: 2px solid transparent;
+        border-radius: 20px;
+        font-family: "Georgia";
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        text-align: center;
+        font-size: large;
+        border: 1px solid grey;
+        top: 0;
+        background-color: #ffffff;
+        padding-top: 30px;
+        margin: 0 auto;
+        width: 550px;
+        height: auto;
+        opacity: 0.8;
+        line-height: 30px;
+
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Product - Regrettable Purchases</title>
+</head>
+<body>
+{% extends 'product/navbar.html' %}
+{% block content %}
+
+    <div class='center-up'>Create a Product</div><br/>
+    <br/>
+    <div class="this-layout">
+
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            {% if form.data.image %}
+                Image: <input type="file" name="image" value="{{ form.data.image }}"/>
+            {% else %}
+                Image: <input type="file" name="image" value="{{ form.image.value }}"/>
+            {% endif %}
+            {{ form.image.errors }}
+        </div>
+        <div>
+            <p>
+                {% if form.data.name %}
+                    Name: <input type="text" name="name" value="{{ form.data.name }}"/>
+                {% else %}
+                    Name: <input type="text" name="name" value="{{ form.name.value }}"/>
+                {% endif %}
+                {{ form.name.errors }}
+            </p>
+            <p>
+                {% if form.data.price %}
+                    Price: <input type="number" step="0.01" name="price" value="{{ form.data.price }}"/>
+                {% else %}
+                    Price: <input type="number" step="0.01" name="price" value="{{ form.price.value }}"/>
+                {% endif %}
+                {{ form.price.errors }}
+            </p>
+            <p>
+                {% if form.data.description %}
+                    Description: <input type="text" name="description" value="{{ form.data.description }}"/>
+                {% else %}
+                    Description: <input type="text" name="description" value="{{ form.description.value }}"/>
+                {% endif %}
+                {{ form.description.errors }}
+            </p>
+            <p>
+                {% if form.data.stock %}
+                    Stock: <input type="number" name="stock" value="{{ form.data.stock }}"/>
+                {% else %}
+                    Stock: <input type="number" name="stock" value="{{ form.stock.value }}"/>
+                {% endif %}
+                {{ form.stock.errors }}
+            </p>
+        </div>
+        <br/>
+        <input type="submit" value="Submit" class="button"/>
+    </form>
+{% endblock %}
+</div>
+</body>
+</html>

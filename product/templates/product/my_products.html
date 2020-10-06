@@ -1,0 +1,81 @@
+{% extends "product/navbar.html" %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+
+    .this-layout {
+        border: 2px solid transparent;
+        border-radius: 20px;
+        font-family: "Georgia";
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        text-align: center;
+        font-size: large;
+        border: 1px solid grey;
+        top: 0;
+        background-color: #ffffff;
+        padding-top: 30px;
+        margin: 0 auto;
+        width: 550px;
+        height: auto;
+        opacity: 0.8;
+        line-height: 30px;
+
+    }
+
+    .button {
+        text-decoration: none;
+        background-color: #215223;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 50%;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <title>My Products - Regrettable Purchases</title>
+
+</head>
+
+<body>
+
+{% block content %}
+
+    <div class='center-up'>My Products</div><br/>
+    <div class="this-layout">
+    <div class='center'>
+        <br/>
+        <p>
+        <h2>
+            <a href="{% url 'add_product' %}" class="button">Create a new product</a>
+        </h2></p>
+    </div><br/>
+
+    <div class='center'>
+    {% for p in products %}
+        <div class='boxed'>
+            <p>
+            <div class='clear-fix'><img src="{{ p.image.url }}" height='240' width='240'/></div>
+            <br/>
+            Name: {{ p.name }}<br/>
+            Price: {{ p.price }}<br/>
+            Description: {{ p.description }}<br/>
+            Stock: {{ p.stock }}<br/>
+            Seller: {{ p.seller.username }}<br/>
+            <br/>
+            <a href="{% url 'edit_product' p.id %}" class="button">Edit</a>
+            <a href="{% url 'delete_product' p.id %}" class="button">Delete</a>
+            </p>
+        </div>
+    {% endfor %}
+{% endblock %}
+</div>
+</div>
+</body>
+</html>
